@@ -1,0 +1,8 @@
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\obj\Debug\Test.csprojResolveAssemblyReference.cache
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\bin\Debug\GageWrapper.dll
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\bin\Debug\GageWrapper.pdb
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Lab322\Desktop\lab322DotNet\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb

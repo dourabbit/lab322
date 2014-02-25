@@ -1,0 +1,11 @@
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\bin\Debug\GageUI.exe.config
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\bin\Debug\GageUI.exe
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\bin\Debug\GageUI.pdb
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Debug\GageUI.csprojResolveAssemblyReference.cache
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Debug\GageUI.Properties.Resources.resources
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Debug\GageUI.csproj.GenerateResource.Cache
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Debug\GageUI.exe
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Debug\GageUI.pdb
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\bin\Debug\GageWrapper.dll
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\bin\Debug\GageWrapper.pdb
+C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Debug\GageUI.Form1.resources

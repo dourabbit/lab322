@@ -1,0 +1,59 @@
+ImageRuntimeVersion: v4.0.30319
+Assembly GageWrapper, Version=1.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class GageWrapper.OutputDelegate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(String): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(String, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class GageWrapper._outputDelegate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(SByte*): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(SByte*, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class GageWrapper.ProceedingDelegate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(UInt16[], UInt32 IsLong, UInt32 IsLong): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(UInt16[], UInt32 IsLong, UInt32 IsLong, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class GageWrapper._proceedingDelegate: AutoLayout, AnsiClass, Class, Public, Sealed, BeforeFieldInit
+  :System.MulticastDelegate
+    Void .ctor(System.Object, IntPtr): PrivateScope, Public, SpecialName, RTSpecialName
+  Methods:
+    Invoke(Void*, UInt32 IsLong, UInt32 IsLong): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    BeginInvoke(Void*, UInt32 IsLong, UInt32 IsLong, AsyncCallback, Object): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+    EndInvoke(IAsyncResult): PrivateScope, Public, Final, Virtual, VtableLayoutMask
+Class GageWrapper.Gage: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+    Void .ctor(GageWrapper.OutputDelegate): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Interfaces:
+    System.IDisposable
+  Fields:
+    Boolean isRunning : Public
+    GageWrapper.OutputDelegate output : Public
+    Int16[] result : Public
+    System.Runtime.InteropServices.GCHandle gchOutput : Public, Static
+    System.Runtime.InteropServices.GCHandle gchProceed : Public, Static
+    System.Runtime.InteropServices.GCHandle gchSetup : Public, Static
+    IntPtr outputFnc : Public, Static
+    IntPtr proceedFnc : Public, Static
+  Methods:
+    GetSingleton(): PrivateScope, Public, Static, HideBySig
+    Initialize(): PrivateScope, Public, HideBySig
+    Start(): PrivateScope, Public, HideBySig
+    Capture(): PrivateScope, Public, HideBySig
+    Exit(): PrivateScope, Public, HideBySig
+    Dispose(): PrivateScope, Public, Final, Virtual, HideBySig

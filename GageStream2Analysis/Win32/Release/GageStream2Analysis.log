@@ -1,0 +1,24 @@
+﻿生成启动时间为 2014-2-20 11:40:53。
+     1>项目“D:\git\lab322\GageStream2Analysis\GageStream2Analysis.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Win32\Release\GageStream2Analysis.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files\Gage\CompuScope\\include" /I"C:\Program Files\Gage\CompuScope\\CompuScope C SDK\C Common" /Zi /nologo /W4 /WX- /O2 /Oy- /GL /D WIN32 /D NDEBUG /D _CRT_SECURE_NO_DEPRECATE /D _CRT_NON_CONFORMING_SWPRINTFS /D _MBCS /Gm- /EHsc /MD /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Win32\Release\\" /Fd"Win32\Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt CsSdkMisc.c
+         CsSdkMisc.c
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Win32\Release\GageStream2Analysis.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Program Files\Gage\CompuScope\\lib" CsSsm.lib CsAppSupport.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\Release\GageStream2Analysis.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"D:\git\lab322\GageStream2Analysis\Win32\Release\GageStream2Analysis.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"Win32\Release\GageStream2Analysis.lib" /MACHINE:X86 Win32\Release\CsSdkMisc.obj
+         Win32\Release\Stream2Analysis.obj
+         正在生成代码
+     1>d:\git\lab322\gagestream2analysis\cimg.h(4541): warning C4706: 条件表达式内的赋值
+         已完成代码的生成
+         GageStream2Analysis.vcxproj -> D:\git\lab322\GageStream2Analysis\Win32\Release\GageStream2Analysis.exe
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"Win32\Release\GageStream2Analysis.exe;#1" /manifest Win32\Release\GageStream2Analysis.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         正在删除文件“Win32\Release\GageStream2Analysis.unsuccessfulbuild”。
+         正在对“Win32\Release\GageStream2Analysis.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“D:\git\lab322\GageStream2Analysis\GageStream2Analysis.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:10.89

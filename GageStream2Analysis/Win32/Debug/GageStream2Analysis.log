@@ -1,0 +1,93 @@
+﻿生成启动时间为 2014-1-22 12:14:43。
+     1>项目“C:\Documents and Settings\xyq\git\lab322\GageStream2Analysis\GageStream2Analysis.vcxproj”在节点 2 上(build 个目标)。
+     1>InitializeBuildStatus:
+         正在创建“Win32\Debug\GageStream2Analysis.unsuccessfulbuild”，因为已指定“AlwaysCreate”。
+       ClCompile:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files\Gage\CompuScope\\include" /I"C:\Program Files\Gage\CompuScope\\CompuScope C SDK\C Common" /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Win32\Debug\\" /Fd"Win32\Debug\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt Stream2Analysis.c
+         Stream2Analysis.c
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20046): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(19720): 编译类 模板 成员函数“cimg_library::CImg<T> cimg_library::CImg<T>::get_resize(const int,const int,const int,const int,const int,const unsigned int,const float,const float,const float,const float) const”时
+                 with
+                 [
+                     T=double
+                 ]
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(13623): 参见对正在编译的类 模板 实例化“cimg_library::CImg<T>”的引用
+                 with
+                 [
+                     T=double
+                 ]
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(15555): 参见对正在编译的类 模板 实例化“cimg_library::CImg<T>::_cimg_math_parser”的引用
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(15553): 编译类 模板 成员函数“double cimg_library::CImg<T>::eval(const char *const ,const double,const double,const double,const double) const”时
+                 with
+                 [
+                     T=float
+                 ]
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(45668): 参见对正在编译的类 模板 实例化“cimg_library::CImg<T>”的引用
+                 with
+                 [
+                     T=float
+                 ]
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20060): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20075): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20090): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20046): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(19720): 编译类 模板 成员函数“cimg_library::CImg<T> cimg_library::CImg<T>::get_resize(const int,const int,const int,const int,const int,const unsigned int,const float,const float,const float,const float) const”时
+                 with
+                 [
+                     T=unsigned char
+                 ]
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(45648): 参见对正在编译的类 模板 实例化“cimg_library::CImg<T>”的引用
+                 with
+                 [
+                     T=unsigned char
+                 ]
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20060): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20075): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20090): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20046): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(19720): 编译类 模板 成员函数“cimg_library::CImg<T> cimg_library::CImg<T>::get_resize(const int,const int,const int,const int,const int,const unsigned int,const float,const float,const float,const float) const”时
+                 with
+                 [
+                     T=short
+                 ]
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\stream2analysis.c(83): 参见对正在编译的类 模板 实例化“cimg_library::CImg<T>”的引用
+                 with
+                 [
+                     T=short
+                 ]
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20060): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20075): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20090): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20046): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+                 c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(19720): 编译类 模板 成员函数“cimg_library::CImg<T> cimg_library::CImg<T>::get_resize(const int,const int,const int,const int,const int,const unsigned int,const float,const float,const float,const float) const”时
+                 with
+                 [
+                     T=float
+                 ]
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20060): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20075): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+     1>c:\documents and settings\xyq\git\lab322\gagestream2analysis\cimg.h(20090): warning C4244: “初始化”: 从“const float”转换到“int”，可能丢失数据
+       ManifestResourceCompile:
+         所有输出均为最新。
+       Link:
+         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"Win32\Debug\GageStream2Analysis.exe" /INCREMENTAL /NOLOGO /LIBPATH:"C:\Program Files\Gage\CompuScope\\lib" CsSsm.lib CsAppSupport.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Win32\Debug\GageStream2Analysis.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Documents and Settings\xyq\git\lab322\GageStream2Analysis\Win32\Debug\GageStream2Analysis.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE:NO /IMPLIB:"Win32\Debug\GageStream2Analysis.lib" /MACHINE:X86 Win32\Debug\GageStream2Analysis.exe.embed.manifest.res
+         Win32\Debug\CsSdkMisc.obj
+         Win32\Debug\Stream2Analysis.obj
+       Manifest:
+         C:\Program Files\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /out:"Win32\Debug\GageStream2Analysis.exe.embed.manifest" /manifest Win32\Debug\GageStream2Analysis.exe.intermediate.manifest
+         所有输出均为最新。
+       LinkEmbedManifest:
+         所有输出均为最新。
+         GageStream2Analysis.vcxproj -> C:\Documents and Settings\xyq\git\lab322\GageStream2Analysis\Win32\Debug\GageStream2Analysis.exe
+       FinalizeBuildStatus:
+         正在删除文件“Win32\Debug\GageStream2Analysis.unsuccessfulbuild”。
+         正在对“Win32\Debug\GageStream2Analysis.lastbuildstate”执行 Touch 任务。
+     1>已完成生成项目“C:\Documents and Settings\xyq\git\lab322\GageStream2Analysis\GageStream2Analysis.vcxproj”(build 个目标)的操作。
+
+生成成功。
+
+已用时间 00:00:03.21

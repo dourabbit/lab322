@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="GageStream2Analysis">
+</Property><Property Name="解决方案文件" Value="C:\Documents and Settings\xyq\git\复件 lab322\GageStream2Analysis\GageStream2Analysis.sln">
+</Property><Property Name="用户选项文件" Value="C:\Documents and Settings\xyq\git\复件 lab322\GageStream2Analysis\GageStream2Analysis.suo">
+</Property><Property Name="Date" Value="2014年1月22日">
+</Property><Property Name="Time" Value="10:35">
+</Property></Properties><Event ErrorLevel="0" Project="" Source="GageStream2Analysis.sln" Description="文件已成功备份为 C:\Documents and Settings\xyq\git\复件 lab322\GageStream2Analysis\GageStream2Analysis.sln.old">
+</Event><Event ErrorLevel="2" Project="" Source="GageStream2Analysis.suo" Description="创建备份文件 C:\Documents and Settings\xyq\git\复件 lab322\GageStream2Analysis\GageStream2Analysis.suo.old 时出错">
+</Event><Event ErrorLevel="0" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Converting project file 'C:\Documents and Settings\xyq\git\复件 lab322\GageStream2Analysis\GageStream2Analysis.vcproj'.">
+</Event><Event ErrorLevel="1" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="VCWebServiceProxyGeneratorTool is no longer supported. The tool has been removed from your project settings.">
+</Event><Event ErrorLevel="1" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="1" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Attribute 'Detect64BitPortabilityProblems' of 'VCCLCompilerTool' is not supported in this version and has been removed during conversion.">
+</Event><Event ErrorLevel="0" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Done converting to new project file 'C:\Documents and Settings\xyq\git\复件 lab322\GageStream2Analysis\GageStream2Analysis.vcxproj'.">
+</Event><Event ErrorLevel="3" Project="GageStream2Analysis" Source="GageStream2Analysis.vcproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="GageStream2Analysis.sln" Description="成功转换解决方案">
+</Event><Event ErrorLevel="3" Project="" Source="GageStream2Analysis.sln" Description="Converted">
+</Event></UpgradeLog>
