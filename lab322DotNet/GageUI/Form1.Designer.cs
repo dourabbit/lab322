@@ -1,4 +1,5 @@
-﻿namespace GageUI
+﻿using System.Drawing;
+namespace GageUI
 {
     partial class Form1
     {
@@ -30,8 +31,7 @@
         {
             this.Start = new System.Windows.Forms.Button();
             this.OutputBox = new System.Windows.Forms.TextBox();
-            this.paintBox = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.paintBox)).BeginInit();
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
             // 
             // Start
@@ -46,43 +46,43 @@
             // 
             // OutputBox
             // 
-            this.OutputBox.Location = new System.Drawing.Point(27, 402);
+            this.OutputBox.Location = new System.Drawing.Point(1213, 919);
             this.OutputBox.Multiline = true;
             this.OutputBox.Name = "OutputBox";
             this.OutputBox.Size = new System.Drawing.Size(625, 55);
             this.OutputBox.TabIndex = 1;
             // 
-            // paintBox
+            // flowLayoutPanel1
             // 
-            this.paintBox.Location = new System.Drawing.Point(27, 41);
-            this.paintBox.Name = "paintBox";
-            this.paintBox.Size = new System.Drawing.Size(625, 330);
-            this.paintBox.TabIndex = 2;
-            this.paintBox.TabStop = false;
+            this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1904, 986);
+            this.flowLayoutPanel1.TabIndex = 2;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(680, 479);
-            this.Controls.Add(this.paintBox);
+            this.ClientSize = new System.Drawing.Size(1904, 986);
             this.Controls.Add(this.OutputBox);
             this.Controls.Add(this.Start);
+            this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.paintBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Drawing.Pen pen; 
+      
         private System.Windows.Forms.Button Start;
-        private System.Windows.Forms.PictureBox paintBox;
         private System.Windows.Forms.TextBox OutputBox;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        
     }
 }
 

@@ -116,8 +116,10 @@ public:
 	OutputDelegate^ output;
 	//ProceedingDelegate^ proceed;
 	array<Int16>^ result;
+	UINT32 resultSize;
 	bool Initialize() {	
 		stream2Analysis->Initialize();
+		resultSize = stream2Analysis->u32TransferSizeWithOutTail;
 		result = gcnew array<Int16>(stream2Analysis->u32TransferSizeWithOutTail);
 		return true;
 	}

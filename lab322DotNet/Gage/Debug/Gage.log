@@ -1,26 +1,9 @@
-﻿Build started 2014/2/24 16:23:13.
-     1>Project "C:\Users\Lab322\Desktop\lab322DotNet\Gage\Gage.vcxproj" on node 2 (Rebuild target(s)).
-     1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _CRT_SECURE_NO_WARNINGS /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gz /TP /analyze- /errorReport:prompt main.cpp Stream2Analysis.cpp
-         Stream2Analysis.cpp
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(137): warning C4305: 'return' : truncation from 'int' to 'bool'
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(152): warning C4305: 'return' : truncation from 'int' to 'bool'
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(193): warning C4305: 'return' : truncation from 'int' to 'bool'
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(202): warning C4305: 'return' : truncation from 'int' to 'bool'
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(219): warning C4305: 'return' : truncation from 'int' to 'bool'
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(234): warning C4305: 'return' : truncation from 'int' to 'bool'
-         main.cpp
-     1>c:\users\lab322\desktop\lab322dotnet\gage\main.cpp(22): warning C4018: '<' : signed/unsigned mismatch
-     1>c:\users\lab322\desktop\lab322dotnet\gage\main.cpp(70): warning C4007: 'main' : must be '__cdecl'
-         Generating Code...
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(221): warning C4715: 'GageNative::Stream2Analysis::Initialize' : not all control paths return a value
-     1>c:\users\lab322\desktop\lab322dotnet\gage\stream2analysis.cpp(237): warning C4715: 'GageNative::Stream2Analysis::Start' : not all control paths return a value
-       Lib:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\Lib.exe /OUT:"C:\Users\Lab322\Desktop\lab322DotNet\\Dist\Gage\Debug\Gage.lib" /NOLOGO Debug\main.obj
-         Debug\Stream2Analysis.obj
+﻿Build started 2014/2/25 23:29:13.
+     1>Project "C:\Users\Lab322\Desktop\lab322DotNet\Gage\Gage.vcxproj" on node 2 (Build target(s)).
+     1>Lib:
          Gage.vcxproj -> C:\Users\Lab322\Desktop\lab322DotNet\\Dist\Gage\Debug\Gage.lib
-     1>Done Building Project "C:\Users\Lab322\Desktop\lab322DotNet\Gage\Gage.vcxproj" (Rebuild target(s)).
+     1>Done Building Project "C:\Users\Lab322\Desktop\lab322DotNet\Gage\Gage.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:01.63
+Time Elapsed 00:00:00.03
