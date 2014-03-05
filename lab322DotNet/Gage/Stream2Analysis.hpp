@@ -8,7 +8,14 @@
 #include "CsTchar.h"
 
 namespace GageNative{
-
+	enum GageState{
+		Stop = 0,
+		Init = 1,
+		Start = 2,
+		Pause = 3,
+		SysError = 4,
+		Exit = 5
+	};
 	typedef struct
 	{
 		uInt32		u32LoopCount;
@@ -18,11 +25,12 @@ namespace GageNative{
 
 	class Stream2Analysis;
 	typedef void(__stdcall *ConsoleCB)(char* str);
-	typedef void(__stdcall *TransDataCB)(void* pBuffer, uInt32 size, uInt32 u32SampleBits);
+	typedef void(__stdcall *TransDataCB)(void* pBuffer,uInt32 size, uInt32 u32SampleBits);
 	typedef void(__stdcall *SetupParameters)(Stream2Analysis * stream2Analysis);
 	class Stream2Analysis{
 	
 	public:
+		
 		char* outputStr;
 		int32						i32Status;
 		void*						pBuffer1;
@@ -36,7 +44,7 @@ namespace GageNative{
 		CSCHANNELCONFIG				csChannelCfg;
 		CSTRIGGERCONFIG				csTriggerCfg;
 		CSSTMCONFIG					StmConfig;
-		BOOL						bDone;
+		GageState					bDone;//
 		BOOL						bErrorData;
 		BOOL						isFirst;
 		uInt32						u32TickStart ;
@@ -47,7 +55,6 @@ namespace GageNative{
 		uInt32						u32ErrorFlag ;
 		//int64*						pi64Sums;
 		
-		bool						isRunning;
 		void*						form;
 		uInt32 resultSize;
 		//int16* result;
@@ -59,13 +66,11 @@ namespace GageNative{
 			CsAcqCfg = { 0 };
 			csChannelCfg = { 0 };
 			csTriggerCfg = { 0 };
-
 			CsAcqCfg.u32Size = sizeof(CSACQUISITIONCONFIG);
 			csChannelCfg.u32Size = sizeof(CSCHANNELCONFIG);
 			csTriggerCfg.u32Size = sizeof(CSTRIGGERCONFIG);
 
-			isRunning = false;
-			bDone = FALSE;
+			bDone = GageState::Stop;
 			bErrorData = FALSE;
 			isFirst = TRUE;
 			//u32LoopCount = 0;
@@ -82,11 +87,11 @@ namespace GageNative{
 		~Stream2Analysis(){ delete[] outputStr; }
 		bool Initialize();
 		bool Start();
+		void Pause();
 		void Capture();
 		void Exit();
 
 	private:
-		
 		ConsoleCB console;
 		TransDataCB transfer;
 		SetupParameters setup;

@@ -32,11 +32,12 @@ namespace GageUI
             this.Start = new System.Windows.Forms.Button();
             this.OutputBox = new System.Windows.Forms.TextBox();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+            this.Write = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Start
             // 
-            this.Start.Location = new System.Drawing.Point(12, 2);
+            this.Start.Location = new System.Drawing.Point(3, 3);
             this.Start.Name = "Start";
             this.Start.Size = new System.Drawing.Size(75, 23);
             this.Start.TabIndex = 0;
@@ -60,6 +61,16 @@ namespace GageUI
             this.flowLayoutPanel1.Size = new System.Drawing.Size(1904, 986);
             this.flowLayoutPanel1.TabIndex = 2;
             // 
+            // Write
+            // 
+            this.Write.Location = new System.Drawing.Point(84, 3);
+            this.Write.Name = "Write";
+            this.Write.Size = new System.Drawing.Size(75, 23);
+            this.Write.TabIndex = 0;
+            this.Write.Text = "Write";
+            this.Write.UseVisualStyleBackColor = true;
+            this.Write.Click += new System.EventHandler(this.Write_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -67,6 +78,7 @@ namespace GageUI
             this.ClientSize = new System.Drawing.Size(1904, 986);
             this.Controls.Add(this.OutputBox);
             this.Controls.Add(this.Start);
+            this.Controls.Add(this.Write);
             this.Controls.Add(this.flowLayoutPanel1);
             this.Name = "Form1";
             this.Text = "Form1";
@@ -82,6 +94,7 @@ namespace GageUI
         private System.Windows.Forms.Button Start;
         private System.Windows.Forms.TextBox OutputBox;
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+        private System.Windows.Forms.Button Write;
         
     }
 }

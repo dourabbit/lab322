@@ -1,38 +1,11 @@
-﻿生成启动时间为 2014-2-20 16:16:27。
-     1>项目“H:\dev\lab322DotNet\lab322DotNet\lab322DotNet.vcxproj”在节点 2 上(build 个目标)。
-     1>InitializeBuildStatus:
-         正在对“Debug\lab322DotNet.unsuccessfulbuild”执行 Touch 任务。
-       GenerateTargetFrameworkMonikerAttribute:
-       正在跳过目标“GenerateTargetFrameworkMonikerAttribute”，因为所有输出文件相对于输入文件而言都是最新的。
-       ClCompile:
-         C:\Program Files\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Program Files\Gage\CompuScope\\CompuScope C SDK\C Common" /I"C:\Program Files\Gage\CompuScope\\include" /AI"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _MBCS /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc100.pdb" /TP /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Core.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Data.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Drawing.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Windows.Forms.dll" /FU"C:\Program Files\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0\System.Xml.dll" /analyze- /errorReport:prompt MainFrm.cpp Stream2Analysis.cpp /clr:nostdlib 
+﻿Build started 2014/3/4 19:47:57.
+     1>Project "C:\Users\Lab322\Desktop\lab322DotNet\lab322DotNet\lab322DotNet.vcxproj" on node 3 (Rebuild target(s)).
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"C:\Program Files (x86)\Gage\CompuScope\\CompuScope C SDK\C Common" /I"C:\Program Files (x86)\Gage\CompuScope\\include" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _MBCS /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Windows.Forms.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib MainFrm.cpp
          MainFrm.cpp
-     1>h:\dev\lab322dotnet\lab322dotnet\MainFrm.h(58): error C2143: 语法错误 : 缺少“;”(在“^”的前面)
-     1>h:\dev\lab322dotnet\lab322dotnet\MainFrm.h(58): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-     1>h:\dev\lab322dotnet\lab322dotnet\MainFrm.h(58): error C4430: 缺少类型说明符 - 假定为 int。注意: C++ 不支持默认 int
-     1>h:\dev\lab322dotnet\lab322dotnet\MainFrm.h(30): error C2065: “wrapper”: 未声明的标识符
-     1>h:\dev\lab322dotnet\lab322dotnet\MainFrm.h(30): error C2061: 语法错误: 标识符“Stream2AnalysisWrapper”
-         Stream2Analysis.cpp
-     1>Stream2Analysis.cpp(80): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\string.h(105) : 参见“strcpy”的声明
-     1>Stream2Analysis.cpp(107): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\stdio.h(371) : 参见“sprintf”的声明
-     1>Stream2Analysis.cpp(109): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-                 C:\Program Files\Microsoft Visual Studio 10.0\VC\include\string.h(105) : 参见“strcpy”的声明
-     1>Stream2Analysis.cpp(189): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(202): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(238): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(263): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(280): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(292): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(301): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(323): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(333): warning C4305: “return”: 从“int”到“bool”截断
-     1>Stream2Analysis.cpp(348): warning C4305: “return”: 从“int”到“bool”截断
-         正在生成代码...
-     1>h:\dev\lab322dotnet\lab322dotnet\stream2analysis.cpp(352): warning C4715: “lab322_CPlusplus::Stream2Analysis::Initialize”: 不是所有的控件路径都返回值
-     1>已完成生成项目“H:\dev\lab322DotNet\lab322DotNet\lab322DotNet.vcxproj”(build 个目标)的操作 - 失败。
+     1>c:\users\lab322\desktop\lab322dotnet\lab322dotnet\MainFrm.h(2): fatal error C1083: Cannot open include file: 'Stream2Analysis.hpp': No such file or directory
+     1>Done Building Project "C:\Users\Lab322\Desktop\lab322DotNet\lab322DotNet\lab322DotNet.vcxproj" (Rebuild target(s)) -- FAILED.
 
-生成失败。
+Build FAILED.
 
-已用时间 00:00:02.81
+Time Elapsed 00:00:00.53

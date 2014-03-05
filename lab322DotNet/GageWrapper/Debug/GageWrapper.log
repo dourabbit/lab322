@@ -1,9 +1,22 @@
-﻿Build started 2014/2/25 23:29:13.
+﻿Build started 2014/3/5 16:10:53.
      1>Project "C:\Users\Lab322\Desktop\lab322DotNet\GageWrapper\GageWrapper.vcxproj" on node 2 (Build target(s)).
-     1>Link:
-         GageWrapper.vcxproj -> C:\Users\Lab322\Desktop\lab322DotNet\Debug\GageWrapper.dll
+     1>ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\\" /AI"C:\Program Files (x86)\Windows Kits\8.1\References\CommonConfiguration\Neutral" /AI"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\\" /Zi /clr /nologo /W3 /WX- /MP /Od /Oy- /D WIN32 /D _DEBUG /D _WINDLL /D _MBCS /EHa /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Yu"stdafx.h" /Fp"Debug\GageWrapper.pch" /Fo"Debug\\" /Fd"Debug\vc120.pdb" /TP /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" /FU"C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" /analyze- /errorReport:prompt /clr:nostdlib GageWrapper.cpp
+         GageWrapper.cpp
+     1>c:\users\lab322\desktop\lab322dotnet\gagewrapper\Gage.hpp(67): warning C4441: calling convention of '__stdcall ' ignored; '__clrcall ' used instead
+     1>c:\users\lab322\desktop\lab322dotnet\gagewrapper\Gage.hpp(73): warning C4441: calling convention of '__stdcall ' ignored; '__clrcall ' used instead
+     1>c:\users\lab322\desktop\lab322dotnet\gagewrapper\Gage.hpp(159): warning C4244: '=' : conversion from 'uInt32' to 'unsigned short', possible loss of data
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Lab322\Desktop\lab322DotNet\\Dist\GageWrapper\Debug\GageWrapper.dll" /INCREMENTAL /NOLOGO pthreadVCE2.lib CsSsm.lib CsAppSupport.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Lab322\Desktop\lab322DotNet\\Dist\GageWrapper\Debug\GageWrapper.pdb" /ASSEMBLYDEBUG /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /FIXED:NO /NXCOMPAT /MACHINE:X86 /DLL Debug\app.res
+         Debug\AssemblyInfo.obj
+         Debug\GageWrapper.obj
+         Debug\stdafx.obj
+         "Debug\.NETFramework,Version=v4.5.AssemblyAttributes.obj"
+         C:\Users\Lab322\Desktop\lab322DotNet\Dist\Gage\Debug\Gage.lib
+     1>Gage.lib(Stream2Analysis.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:LBR' specification
+         GageWrapper.vcxproj -> C:\Users\Lab322\Desktop\lab322DotNet\\Dist\GageWrapper\Debug\GageWrapper.dll
      1>Done Building Project "C:\Users\Lab322\Desktop\lab322DotNet\GageWrapper\GageWrapper.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.09
+Time Elapsed 00:00:04.14

@@ -1,5 +1,5 @@
 #pragma once
-#include "Stream2Analysis.hpp"
+//#include "Stream2Analysis.hpp"
 #include "pthread.h"
 namespace lab322DotNet {
 

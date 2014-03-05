@@ -17,11 +17,10 @@ static void print(System::String^ str) {
 int _tmain(int argc, _TCHAR* argv[]){
 	OutputDelegate^ output = gcnew OutputDelegate(print);
 	Gage^ gage = gcnew Gage(output);
-	gage->Initialize();
-	gage->Start();
-	for (int i = 0; i < 1000;++i){
-		gage->Capture();
+	gage->SetGage(Gage::GageState::Init);
+	for (int i = 0; i < 10000000000;++i){
+		gage->SetGage(Gage::GageState::Start);
 	} ;
-	gage->Exit();
+	gage->SetGage(Gage::GageState::Stop);
 
 }

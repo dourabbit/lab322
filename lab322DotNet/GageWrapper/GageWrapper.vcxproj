@@ -47,6 +47,7 @@
     <LibraryPath>$(SolutionDir)\lib;$(GageDir)\lib;$(LibraryPath)</LibraryPath>
     <ReferencePath>$(ReferencePath)</ReferencePath>
     <SourcePath>$(SolutinDir)\Gage;$(SourcePath)</SourcePath>
+    <OutDir>$(SolutionDir)\Dist\GageWrapper\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -62,6 +63,7 @@
       <PrecompiledHeader>Use</PrecompiledHeader>
       <ForcedUsingFiles>
       </ForcedUsingFiles>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>

@@ -31,7 +31,8 @@ int32 Stream2Analysis::InitializeStream(CSHANDLE hSystem)
 		if (CS_FAILED(i32Status))
 		{
 			//DisplayErrorString(i32Status);
-			_itoa(i32Status, outputStr, 16);
+			_itoa(i32Status, outputStr, 10);
+			bDone = GageState::SysError;
 			console(_T("\nSystem Error Code :")); console(outputStr);
 			return (i32Status);
 		}
@@ -44,21 +45,22 @@ int32 Stream2Analysis::InitializeStream(CSHANDLE hSystem)
 		if (i64ExtendedOptions & CS_BBOPTIONS_STREAM)
 		{
 			//_ftprintf(stdout, _T("\nSelecting Expert Stream from image 1."));
-			console(_T("\nSelecting Expert Stream from image 1."));
+			console(_T("\n============Selecting Expert Stream from image 1."));
 			CsAcqCfg.u32Mode |= CS_MODE_USER1;
 		}
 		else if ((i64ExtendedOptions >> 32) & CS_BBOPTIONS_STREAM)
 		{
 			//_ftprintf(stdout, _T("\nSelecting Expert Stream from image 2."));
-			console(_T("\nSelecting Expert Stream from image 2."));
+			console(_T("\n============Selecting Expert Stream from image 2."));
 			CsAcqCfg.u32Mode |= CS_MODE_USER2;
 		}
 		else
 		{
 			//_ftprintf(stdout, _T("\nCurrent system does not support Expert Stream."));
 			//_ftprintf(stdout, _T("\nApplication terminated."));
-			console(_T("\nCurrent system does not support Expert Stream."));
-			console(_T("\nApplication terminated."));
+			bDone = GageState::SysError;
+			console(_T("\n============Current system does not support Expert Stream."));
+			console(_T("\n============Application terminated."));
 			return CS_MISC_ERROR;
 		}
 	
@@ -71,7 +73,8 @@ int32 Stream2Analysis::InitializeStream(CSHANDLE hSystem)
 		if (CS_FAILED(i32Status))
 		{
 			//DisplayErrorString(i32Status);
-			_itoa(i32Status, outputStr, 16);
+			_itoa(i32Status, outputStr, 10);
+			bDone = GageState::SysError;
 			console(_T("\nSystem Error Code :")); console(outputStr);
 			return CS_MISC_ERROR;
 		}
@@ -114,13 +117,12 @@ void Stream2Analysis::UpdateProgress( DWORD	dwTickStart,BOOL bAbort, unsigned lo
 			}
 			//printf ("\rTotal data: %0.2f MS, Rate: %6.2f MS/s, Elapsed Time: %u:%02u:%02u  ", llSamples / 1000000.0, dRate, h, m, s);
 			
-			sprintf(outputStr, "\rTotal data: %0.2f MS, Rate: %6.2f MS/s, Elapsed Time: %u:%02u:%02u  ", llSamples / 1000000.0, dRate, h, m, s);
+			sprintf(outputStr, "\r============Total data: %0.2f MS, Rate: %6.2f MS/s, Elapsed Time: %u:%02u:%02u  ", llSamples / 1000000.0, dRate, h, m, s);
 			console(outputStr);
 		}
 	}
 }
 bool	Stream2Analysis::Initialize(){
-			this->isRunning = true;
 	
 			/*
 				Initializes the CompuScope boards found in the system. If the
@@ -132,9 +134,10 @@ bool	Stream2Analysis::Initialize(){
 			if (CS_FAILED(i32Status))
 			{
 				//DisplayErrorString(i32Status);
-				_itoa(i32Status, outputStr, 16);
+				bDone = GageState::SysError;
+				_itoa(i32Status, outputStr, 10);
 				console(_T("\nSystem Error Code :")); console(outputStr);
-				return (-1);
+				return false;
 			}
 			/*
 				Get the system. This sample program only supports one system. If
@@ -147,9 +150,10 @@ bool	Stream2Analysis::Initialize(){
 			if (CS_FAILED(i32Status))
 			{
 				//DisplayErrorString(i32Status);
-				_itoa(i32Status, outputStr, 16);
+				bDone = GageState::SysError;
+				_itoa(i32Status, outputStr, 10);
 				console(_T("\nSystem Error Code :")); console(outputStr);
-				return (-1);
+				return false;
 			}
 			/*
 				Get System information. The u32Size field must be filled in
@@ -162,7 +166,7 @@ bool	Stream2Analysis::Initialize(){
 				Display the system name from the driver
 			*/
 			//_ftprintf(stdout, _T("\nBoard Name: %s"), CsSysInfo.strBoardName);
-			console(_T("\nBoard Name:")); console(CsSysInfo.strBoardName);
+			console(_T("\n============Board Name:")); console(CsSysInfo.strBoardName);
 
 			setup(this);
 
@@ -188,18 +192,20 @@ bool	Stream2Analysis::Initialize(){
 			i32Status = CsStmAllocateBuffer(hSystem, 0,  u32TransferSizeInBytes, &pBuffer1);
 			if (CS_FAILED(i32Status))
 			{
-				_ftprintf (stderr, _T("\nUnable to allocate memory for stream buffer 1.\n"));
+				bDone = GageState::SysError;
+				console(_T("\nUnable to allocate memory for stream buffer 1.\n"));
 				CsFreeSystem(hSystem);
-				return (-1);
+				return false;
 			}
 
 			i32Status = CsStmAllocateBuffer(hSystem, 0,  u32TransferSizeInBytes, &pBuffer2);
 			if (CS_FAILED(i32Status))
 			{
-				_ftprintf (stderr, _T("\nUnable to allocate memory for stream buffer 2.\n"));
+				bDone = GageState::SysError;
+				console(_T("\nUnable to allocate memory for stream buffer 2.\n"));
 				CsStmFreeBuffer(hSystem, 0, pBuffer1);
 				CsFreeSystem(hSystem);
-				return (-1);
+				return false;
 			}
 
 		/*
@@ -210,14 +216,18 @@ bool	Stream2Analysis::Initialize(){
 			if (CS_FAILED(i32Status))
 			{
 				//DisplayErrorString(i32Status);
-				_itoa(i32Status, outputStr, 16);
+				_itoa(i32Status, outputStr, 10);
+				bDone = GageState::SysError;
 				console(_T("\nSystem Error Code :")); console(outputStr);
 
 				CsStmFreeBuffer(hSystem, 0, pBuffer1);
 				CsStmFreeBuffer(hSystem, 0, pBuffer2);
 				CsFreeSystem(hSystem);
-				return (-1);
+
+				return false;
 			}
+			bDone = GageState::Init;
+			return true;
 }
 bool Stream2Analysis::Start(){
 
@@ -225,39 +235,75 @@ bool Stream2Analysis::Start(){
 	if (CS_FAILED(i32Status))
 	{
 		//DisplayErrorString(i32Status);
-		_itoa(i32Status, outputStr, 16);
+		_itoa(i32Status, outputStr, 10);
+		bDone = GageState::SysError;
 		console(_T("\nSystem Error Code :")); console(outputStr);
 
 		CsStmFreeBuffer(hSystem, 0, pBuffer1);
 		CsStmFreeBuffer(hSystem, 0, pBuffer2);
 		CsFreeSystem(hSystem);
-		return (-1);
+		return false;
 	}
 	this->u32TickStart = GetTickCount();
+	bDone = GageState::Start;
+	return true;
 }
 void Stream2Analysis::Exit(){
 	console(_T("\nSystem Exiting"));
-	
+	bDone = GageState::Exit;
 	CsDo(hSystem, ACTION_ABORT);
 
 
-	//if ( StmConfig.bDoAnalysis )
-	//{
-	//	if ( u32SaveCount < u32LoopCount )
-	//	{
-	//		//pi64Sums[u32SaveCount++] = SumBufferData(pWorkBuffer, u32TransferSize - TAIL_ADJUST, CsAcqCfg.u32SampleBits);
-	//	}
-	//}
 
 	CsStmFreeBuffer(hSystem, 0, pBuffer1);
 	CsStmFreeBuffer(hSystem, 0, pBuffer2);
 
 	i32Status = CsFreeSystem(hSystem);
+
+	bDone = GageState::Exit;
 	
 }
+void Stream2Analysis::Pause(){
 
+
+	/*
+	Wait for the DMA transfer on the current buffer to complete so we can loop
+	back around to start a new one. Calling thread will sleep until
+	the transfer completes
+	*/
+	i32Status = CsStmGetTransferStatus(hSystem, 0, 5000, &u32ErrorFlag, NULL, NULL);
+	if (CS_SUCCEEDED(i32Status))
+	{
+		if (CS_STM_TRANSFER_INPROGRESS == i32Status)
+		{
+			bDone = GageState::Pause;
+			console(_T("\nStream transfer timeout. Pausing!"));return;
+		}
+		if (STM_TRANSFER_ERROR_FIFOFULL & u32ErrorFlag)
+		{
+			bDone = GageState::SysError;
+			console(_T("\nStream Fifo full !!!")); return;
+		}
+		bDone = GageState::Start;
+	}
+	else if (CS_STM_TRANSFER_ABORTED == i32Status)
+	{
+		bDone = GageState::SysError;
+		console(_T("\nStream transfer aborted. !!!")); return;
+	}
+	else /* some other error */
+	{
+		//DisplayErrorString(i32Status);
+		_itoa(i32Status, outputStr, 10);
+		bDone = GageState::SysError;
+		console(_T("\nSystem Error Code :")); console(outputStr); return;
+	}
+
+}
 void Stream2Analysis::Capture(){
-
+		if (bDone == GageState::Pause){
+			Pause(); return;
+		}
 		if (isFirst)
 		{
 			pCurrentBuffer = pBuffer1;
@@ -271,9 +317,9 @@ void Stream2Analysis::Capture(){
 		i32Status = CsStmTransferToBuffer(hSystem, 0, pCurrentBuffer, u32TransferSize);
 		if (CS_FAILED(i32Status))
 		{
-			_itoa(i32Status, outputStr, 16);
+			_itoa(i32Status, outputStr, 10);
+			bDone = GageState::SysError;
 			console(_T("\nSystem Error Code :")); console(outputStr);
-
 			return;
 		}
 
@@ -293,34 +339,34 @@ void Stream2Analysis::Capture(){
 		{
 			if ( CS_STM_TRANSFER_INPROGRESS == i32Status )
 			{
-				_ftprintf (stdout, _T("\nStream transfer timeout. !!!"));
-				bDone = TRUE;
+				bDone = GageState::Pause;
+				console(_T("\nStream transfer timeout. !!!"));
+				return;
+				
 			}
 			if ( STM_TRANSFER_ERROR_FIFOFULL & u32ErrorFlag )
 			{
-				_ftprintf (stdout, _T("\nStream Fifo full !!!"));
-				bDone = TRUE;
+				bDone = GageState::SysError;
+				console(_T("\nStream Fifo full !!!"));
+				return;
 			}
 		}
 		else if ( CS_STM_TRANSFER_ABORTED == i32Status )
 		{
-			_ftprintf (stdout, _T("\nStream transfer aborted. !!!"));
-			bDone = TRUE;
+			bDone = GageState::SysError;
+			console(_T("\nStream transfer aborted. !!!"));
+			return;
 		}
 		else /* some other error */
 		{
 			//DisplayErrorString(i32Status);
-			_itoa(i32Status, outputStr, 16);
+			bDone = GageState::SysError;
+			_itoa(i32Status, outputStr, 10);
 			console(_T("\nSystem Error Code :")); console(outputStr);
-
-			bDone = TRUE;
+			return;
 		}
 
-		//if (isFirst)
-		//{
-		//	u32TickStart =  GetTickCount();
-		//}
-
+		bDone = GageState::Start;
 		pWorkBuffer = pCurrentBuffer;
 
 		llTotalSamples += u32TransferSize;

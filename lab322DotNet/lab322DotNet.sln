@@ -3,18 +3,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.21005.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "lab322DotNet", "lab322DotNet\lab322DotNet.vcxproj", "{3AECD270-2003-4146-AA32-0A1F62E7BC21}"
-EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gage", "Gage\Gage.vcxproj", "{BFCD56AE-E26B-47DD-B6C1-46E6DD11C41F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GageWrapper", "GageWrapper\GageWrapper.vcxproj", "{08CE6ABE-91FF-4292-A8FC-6D366471D702}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "ConsoleApplication1\Test.csproj", "{C004254A-F573-46C6-B727-51798E68B3C0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{C004254A-F573-46C6-B727-51798E68B3C0}"
 	ProjectSection(ProjectDependencies) = postProject
 		{BFCD56AE-E26B-47DD-B6C1-46E6DD11C41F} = {BFCD56AE-E26B-47DD-B6C1-46E6DD11C41F}
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GageUI", "GageUI\GageUI.csproj", "{F7250FC6-5E2B-4B50-AEE0-A4E892809C43}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1FD24840-3CE9-44DE-83F4-FF4E1B833BD1}"
+	ProjectSection(SolutionItems) = preProject
+		Performance1.psess = Performance1.psess
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,16 +29,6 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Debug|Any CPU.ActiveCfg = Debug|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Debug|Mixed Platforms.Build.0 = Debug|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Debug|Win32.ActiveCfg = Debug|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Debug|Win32.Build.0 = Debug|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Release|Any CPU.ActiveCfg = Release|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Release|Mixed Platforms.ActiveCfg = Release|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Release|Mixed Platforms.Build.0 = Release|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Release|Win32.ActiveCfg = Release|Win32
-		{3AECD270-2003-4146-AA32-0A1F62E7BC21}.Release|Win32.Build.0 = Release|Win32
 		{BFCD56AE-E26B-47DD-B6C1-46E6DD11C41F}.Debug|Any CPU.ActiveCfg = Debug|Win32
 		{BFCD56AE-E26B-47DD-B6C1-46E6DD11C41F}.Debug|Mixed Platforms.ActiveCfg = Debug|Win32
 		{BFCD56AE-E26B-47DD-B6C1-46E6DD11C41F}.Debug|Mixed Platforms.Build.0 = Debug|Win32
@@ -79,5 +72,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(Performance) = preSolution
+		HasPerformanceSessions = true
 	EndGlobalSection
 EndGlobal

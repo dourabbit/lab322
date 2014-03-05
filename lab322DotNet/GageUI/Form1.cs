@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Timers;
 using System.Activities;
+using System.IO;
 using GageWrapper;
 
 namespace GageUI
@@ -20,16 +21,27 @@ namespace GageUI
             Form1.GetOutput().Text = val;
         }
         delegate void m_SetLabel(string val);
+        private static List<string> MsgHistory = new List<string>(); 
         private static void print(string str)
         {
             TextBox output = Form1.GetOutput();
-            String msg = str.ToString();
-
+            string[] buffer = str.Split('\r');
+            if (buffer.Length > 1)
+                MsgHistory[MsgHistory.Count - 1] = str;
+            else
+                MsgHistory.Add(str);
+            
+            String msg = "Testing Version";
+            for (int i = 0; i < MsgHistory.Count; ++i)
+                msg += '\n' + MsgHistory[i];
 
             if (output.InvokeRequired)
             {
                 m_SetLabel setLabel = SetLabelText;
-                Form1.GetForm().Invoke(setLabel, msg);
+                Form1 form = Form1.GetForm();
+
+                if (gage.State != Gage.GageState.Stop)
+                    form.Invoke(setLabel, msg);
             }
             else
                 output.Text = msg;
@@ -46,33 +58,36 @@ namespace GageUI
         private static Gage gage;
         private const int _initLeftRange = 2000;
         private const int _initRightRange = 5000;
-        private int _MAXLOOPs = 6000;
+        private UInt16 _MAXLOOPs = 6000;
         private int _curLoopCount = 0;
         private int _drawedLoopCount = 0;
         private int _dataGridMaxRow = 50;
         private int _dataGridMaxCol = 120;
         private int _gridCellSize = 5;
-        private uint _dataLength4SingleChanl;
+        private UInt16 _dataLength4SingleChanl;
         private static Form1 singleton;
-        private OutputDelegate output = print;
+        private OutputDelegate outputFnc = print;
         private System.ComponentModel.BackgroundWorker bw;
         private Bitmap backBuffer;
-        private List<Bitmap> backgrounds;
+        private List<Bitmap> gridsGraphs;
+        private Bitmap background;
         private List<PictureBox> paintBoxes;
         private System.Drawing.Pen pen;
         private  List<System.Drawing.SolidBrush> brushes;
-        private short[,,] result; 
-        private static int _numOfChannel = 5;
+        private short[] RawDATA4Write;
+        private byte[] byteArray;  
+        private static UInt16 _numOfChannel = 5;
         public static TextBox GetOutput() { return singleton.OutputBox; }
         public static PictureBox GetPaint(int index) { return singleton.paintBoxes[index]; }
         public static Form1 GetForm() { return singleton; }
         public Form1()
         {
-             
             InitializeComponent();
+
+            OutputBox.TextChanged += OutputBox_TextChanged;
             paintBoxes = new List<PictureBox>();
             _settingRange = new List<short[]>();
-            backgrounds = new List<Bitmap>();
+            gridsGraphs = new List<Bitmap>();
 
             brushes = new List<SolidBrush>();
 
@@ -99,24 +114,9 @@ namespace GageUI
                 paintBoxes.Add(paintBox);
                 short[] range = new short[2];
 
-                Bitmap background = new Bitmap(paintBoxes[0].Width, paintBoxes[0].Height);
-                backgrounds.Add(background);
-                using (var g = Graphics.FromImage(background))
-                {
-                    float x0, y0;
-
-                    for (int row = 0; row < _dataGridMaxRow; row++)
-                    {
-                        int index = row % 2 == 0 ? 0 : 1;
-                        for (int col = 0; col < _dataGridMaxCol; col++)
-                        {
-                            index ^= 1;
-                            x0 = _gridGraphCorner.X + _gridCellSize * col;
-                            y0 = _gridGraphCorner.Y + _gridCellSize * row;
-                            g.FillRectangle(brushes[index], (int)x0, (int)y0, 4, 4);
-                        }
-                    }
-                }
+                Bitmap grid = new Bitmap(_dataGridMaxCol,  _dataGridMaxRow);
+                gridsGraphs.Add(grid);
+                
                 backBuffer = new Bitmap(paintBoxes[0].Width, paintBoxes[0].Height);
                 range[0] = _initLeftRange; range[1] = _initRightRange;
                 _settingRange.Add(range);
@@ -124,8 +124,23 @@ namespace GageUI
             }
 
 
-           
+            background = new Bitmap(paintBoxes[0].Width, paintBoxes[0].Height);
+            using (var g = Graphics.FromImage(background))
+            {
+                float x0, y0;
 
+                for (int row = 0; row < _dataGridMaxRow; row++)
+                {
+                    int index = row % 2 == 0 ? 0 : 1;
+                    for (int col = 0; col < _dataGridMaxCol; col++)
+                    {
+                        index ^= 1;
+                        x0 = _gridGraphCorner.X + _gridCellSize * col;
+                        y0 = _gridGraphCorner.Y + _gridCellSize * row;
+                        g.FillRectangle(brushes[index], (int)x0, (int)y0, 4, 4);
+                    }
+                }
+            }
        
 
 
@@ -141,10 +156,13 @@ namespace GageUI
             //Draw graph
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(Draw);
-            // Set the Interval to 5 seconds.
-            aTimer.Interval = 80;
+            aTimer.Interval = 333;
             aTimer.Enabled = true;
 
+            System.Timers.Timer bTimer = new System.Timers.Timer();
+            bTimer.Elapsed += new ElapsedEventHandler(DrawGrid);
+            bTimer.Interval = 1000;
+            bTimer.Enabled = true;
 
             this.WindowState = FormWindowState.Maximized;
         }
@@ -167,32 +185,45 @@ namespace GageUI
                         drawData(paintBox, gage.result,i);
 
 
-                  
                 }
                 catch (Exception exception) { 
             
             
                 }
             }
+
+        }
+
+
+        private void DrawGrid(object source, ElapsedEventArgs e)
+        {
+
+            for (int i = 0; i < _numOfChannel; ++i)
+            {
+
+                drawGrid2Img(i);
+
+            }
             if (_drawedLoopCount < _curLoopCount)
-                _drawedLoopCount++;
-           // _drawedLoopCount = _curLoopCount;
+                _drawedLoopCount = _curLoopCount;
         }
 
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            gage = new Gage(output);
-            gage.Initialize();
-            _dataLength4SingleChanl = gage.resultSize / 8;
-            result = new short[_MAXLOOPs, _numOfChannel, _dataLength4SingleChanl];
+            gage = new Gage(outputFnc);
+
+            gage.SetGage(Gage.GageState.Init);
+            _dataLength4SingleChanl = Gage.length4SingleChannl;
+            RawDATA4Write = new short[_MAXLOOPs * Gage.offset * _dataLength4SingleChanl];
+            byteArray = new byte[1024];
             _maxiumValue = new ushort[_numOfChannel, _MAXLOOPs];
         }
 
         private void Form1_FormClosed(object sender, FormClosedEventArgs e)
         {
-            if (gage.isRunning)
-                gage.Exit();
+            if (gage.State == Gage.GageState.Start)
+                gage.SetGage(Gage.GageState.Stop);
         }
 
         private delegate void WorkerEventHandler(
@@ -200,10 +231,63 @@ namespace GageUI
             AsyncOperation asyncOp);
 
        private void DoWork(object sender, DoWorkEventArgs e) {
-
-           gage.Capture();
+           Gage.GageState state = gage.GetGage();
+           if(state == Gage.GageState.Pause)
+               gage.SetGage(Gage.GageState.Pause);
+           else
+               gage.SetGage(Gage.GageState.Start);
        }
+       /// <summary>
+       /// Called by finishing the job
+       /// </summary>
+       /// <param name="sender"></param>
+       /// <param name="e"></param>
+       private void CompleteWork(object sender, RunWorkerCompletedEventArgs e)
+       {
 
+           if (gage.State == Gage.GageState.SysError)//Put error handler here
+           {
+               return;
+           }
+
+
+
+           if (_curLoopCount < _MAXLOOPs)
+           {
+               Array.Copy(gage.result, 0, this.RawDATA4Write, _curLoopCount*Gage.offset * _dataLength4SingleChanl, gage.result.Length);
+
+               for (int channel = 0; channel < _numOfChannel; channel++) 
+               {
+                   for (int i = 0; i <  _dataLength4SingleChanl; i++)
+                   {
+
+                       if (i > _initLeftRange && i < _initRightRange)
+                       {
+                           short value = gage.result[channel + i * Gage.offset];
+                           ushort maxValue = (ushort)(value < 0 ? -value : value);
+                           maxValue = (maxValue == 32768) ? maxValue-- : maxValue;
+                           _maxiumValue[channel, _curLoopCount] = maxValue > _maxiumValue[channel, _curLoopCount] ? maxValue : _maxiumValue[channel, _curLoopCount];
+                       }
+
+                   }
+               
+               }
+               Gage.GageState state = gage.GetGage();
+               if (state == Gage.GageState.Start || state == Gage.GageState.Pause)
+                {
+                    _curLoopCount++;
+                    this.bw.RunWorkerAsync();
+                }
+           }
+           else
+           {
+               _curLoopCount = 0;
+               _drawedLoopCount = 0;
+               Array.Clear(_maxiumValue, 0, _maxiumValue.Length);
+               this.bw.RunWorkerAsync();
+           }
+
+       }
        public Color Blend(Color backColor, Color color , double amount)
        {
            byte r = (byte)((color.R * amount) + backColor.R * (1 - amount));
@@ -221,54 +305,25 @@ namespace GageUI
            using (var graphics = Graphics.FromImage(backBuffer))
            {
                graphics.Clear(Color.Black);
-
-               if (false)//_drawedLoopCount < _curLoopCount)
-               {
-                  int numOfGrid = _curLoopCount - _drawedLoopCount;
-                 // Console.WriteLine(numOfGrid.ToString());
-                  using (var g = Graphics.FromImage(backgrounds[chanelIndex]))
-                  {
-                      int drawIndex = _drawedLoopCount;
-                      for (int a = 0; a < numOfGrid; ++a)
-                      {
-                          float x, y;
-                          int col = (_drawedLoopCount+a) % _dataGridMaxCol;
-                          int row = (_drawedLoopCount + a - col) / _dataGridMaxCol;
-                          x = _gridGraphCorner.X + _gridCellSize * col;
-                          y = _gridGraphCorner.Y + _gridCellSize * row;
-                          ushort maxium = this._maxiumValue[chanelIndex, row * _dataGridMaxCol + col];
-                          double blend = (double)maxium / (double)short.MaxValue;
-                          Color color = Blend(Color.Blue, Color.Red, blend);
-                          using (SolidBrush brush = new SolidBrush(color))
-                          {
-                              g.FillRectangle(brush, (int)x, (int)y, _gridCellSize, _gridCellSize);
-                          }
-                          drawIndex++;
-                      
-                      
-                      }
-
-                  }
-              }
-              
-                    graphics.DrawImage(backgrounds[chanelIndex], 0, 0);
+               graphics.DrawImage(background, 0, 0);
+               lock (gridsGraphs[chanelIndex])
+                   graphics.DrawImage(gridsGraphs[chanelIndex], _gridGraphCorner.X, _gridGraphCorner.Y, _gridCellSize * _dataGridMaxCol, _gridCellSize * _dataGridMaxRow);
 
 
-               const int offset = 8 * 5;
-               int totalPoint = (data.Length / offset);
-               float deltaX = (float)(_gageGraphSize.X - 2 * _gageGraphCorner.X) / (float)totalPoint;
+               int totalPoints = (data.Length / Gage.offset);
+               float deltaX = (float)(_gageGraphSize.X - 2 * _gageGraphCorner.X) / (float)totalPoints;
                float offsetY = short.MaxValue;
                float scaleY = (float)(_gageGraphSize.Y - 2 * _gageGraphCorner.Y) / (float)(short.MaxValue * 2);
                int i = 0;
-               while (chanelIndex + offset < data.Length)
+               while (chanelIndex + Gage.offset < data.Length)
                {
                    float x0,x1,y0,y1;
                    x0 = _gageGraphCorner.X + deltaX * i++;
                    x1 = _gageGraphCorner.X + deltaX * i;
                    y0 = _gageGraphCorner.Y + (data[chanelIndex] + offsetY) * scaleY;
-                   y1 = _gageGraphCorner.Y + (data[chanelIndex + offset] + offsetY) * scaleY;
+                   y1 = _gageGraphCorner.Y + (data[chanelIndex + Gage.offset] + offsetY) * scaleY;
                    graphics.DrawLine(this.pen, x0,y0 ,x1 , y1);
-                   chanelIndex += offset;
+                   chanelIndex += Gage.offset;
                }
            }
            using (var g = paintBox.CreateGraphics())
@@ -276,45 +331,61 @@ namespace GageUI
        }
 
 
+
+
+
         /// <summary>
-        /// Called by finishing the job
+        /// draw grid data, locking source 
+       /// http://stackoverflow.com/questions/1060280/invalidoperationexception-object-is-currently-in-use-elsewhere-red-cross
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-       private void CompleteWork( object sender,RunWorkerCompletedEventArgs e){
+        /// <param name="chanelIndex"></param>
+       private void drawGrid2Img(int chanelIndex)
+       {
+                if (_drawedLoopCount < _curLoopCount)//_drawedLoopCount < _curLoopCount)
+                {
+                    int numOfGrid = _curLoopCount - _drawedLoopCount;
 
-           if (_curLoopCount < _MAXLOOPs)
-           {
+                   
+                    lock (gridsGraphs[chanelIndex])
+                    using (var g = Graphics.FromImage(gridsGraphs[chanelIndex]))
+                    {
+                       
+                       g.Clear(Color.Empty);
 
-               for (int channel = 0; channel < _numOfChannel; channel++)
-               {
-                   for (int i = 0; i < _dataLength4SingleChanl; ++i)
-                   {
-                       const int offset = 8;
-                       short value =  gage.result[channel + i * offset];
-                       this.result[_curLoopCount, channel, i] = value;
+                       lock (gridsGraphs[chanelIndex]) {
 
-                       if (i > _initLeftRange && i < _initRightRange) {
-                           ushort maxValue = (ushort)(value < 0 ? -value : value);
-                           maxValue = (maxValue == 32768) ? maxValue-- : maxValue;
-                           _maxiumValue[channel, _curLoopCount] = maxValue > _maxiumValue[channel, _curLoopCount] ? maxValue : _maxiumValue[channel, _curLoopCount];
+                           for (int col = 0; col < _dataGridMaxCol; col++)
+                           {
+
+                               for (int row = 0; row < _dataGridMaxRow; row++)
+                               {
+                                   int curIndex = row * _dataGridMaxCol + col;
+                                   Color color;
+                                   if (_curLoopCount < curIndex)
+                                   {
+                                       break;
+                                       //color = Color.FromArgb(0,0,0,0);//reset of pixels are empty
+                                   }
+                                   else
+                                   {
+                                       ushort maxium = this._maxiumValue[chanelIndex, curIndex];
+                                       double blend = (double)maxium / (double)short.MaxValue;
+                                       color = Blend(Color.Blue, Color.Red, blend);
+                                   }
+                                   gridsGraphs[chanelIndex].SetPixel(col, row, color);
+                               }
+                           }
+                       
                        }
+                           // g.DrawImage(grid, _gridGraphCorner.X, _gridGraphCorner.Y, _gridCellSize * _dataGridMaxCol, _gridCellSize * _dataGridMaxRow);
+
                    }
                }
 
-             // Draw(null,null);
 
-               if (gage.isRunning)
-               {
-                   _curLoopCount++;
-                   this.bw.RunWorkerAsync();
-               }
-           }
-           else{
-               //_curLoopCount = 0;
-           }
-          
-         }
+       }
+
+      
        /// <summary>
        /// excuted by pressing start button
        /// </summary>
@@ -322,10 +393,66 @@ namespace GageUI
        /// <param name="e"></param>
         private void Start_Click(object sender, EventArgs e)
         {
+            Gage.GageState state = gage.GetGage();
+            if (state == Gage.GageState.Init)
+             this.bw.RunWorkerAsync();
+        }
+        private void OutputBox_TextChanged(object sender, EventArgs e)
+        {
+            using (StreamWriter writer = File.AppendText("log.txt"))
+            {
+                writer.Write(DateTime.Now); writer.Write(" :: ");
+                writer.WriteLine(MsgHistory[MsgHistory.Count-1]);
+                writer.Flush();
+                writer.Close();
+            }
+        }
+        private void Write_Click(object sender, EventArgs e)
+        {
+             try
+            {
+                using (FileStream myFStream = new FileStream("temp.dat", FileMode.Create, FileAccess.Write))
+                { 
+                    BinaryWriter binWrit = new BinaryWriter(myFStream);
+               
+                    
+                    //var byteArray = new byte[2 + 2 + 2 + RawDATA4Write.Length * 2];//header0 + header1 + header2
+                    var headerBytes = new byte[6];
+                    byte[] intBytes;
+                    //Write Headers//if (BitConverter.IsLittleEndian) 
+                    //UInt16 _MAXLOOPS, _numOfChannel, _dataLength4SingleChanl
+                    intBytes = BitConverter.GetBytes(_MAXLOOPs);
+                    Buffer.BlockCopy(intBytes, 0, headerBytes, 0, intBytes.Length);
 
-            if (gage.isRunning) return;
-            gage.Start();
-            this.bw.RunWorkerAsync();
+                    intBytes = BitConverter.GetBytes(Gage.offset);
+                    Buffer.BlockCopy(intBytes, 0, headerBytes, 2, intBytes.Length);
+
+                    intBytes = BitConverter.GetBytes(_dataLength4SingleChanl);
+                    Buffer.BlockCopy(intBytes, 0, headerBytes, 4, intBytes.Length);
+
+                    myFStream.Write(headerBytes,0, headerBytes.Length);
+
+                    
+
+                    ////Write Data
+                    var cacheSize = RawDATA4Write.Length / _MAXLOOPs;
+
+                    var DataBytes = new byte[RawDATA4Write.Length * 2 / _MAXLOOPs];
+                   
+                    for (int i = 0; i < _MAXLOOPs; i++) {
+                        Buffer.BlockCopy(RawDATA4Write, cacheSize * i, DataBytes, 0, cacheSize);
+                        myFStream.Write(DataBytes, 0, DataBytes.Length);
+                    };
+                    //Buffer.BlockCopy(RawDATA4Write, 0, byteArray, 6, RawDATA4Write.Length);
+                    //myFStream.Write(byteArray, 0, byteArray.Length);
+                    myFStream.Close();
+                }
+            }
+             catch (Exception err)
+             {
+                 // Error
+                 print("Exception caught in process: " + err.ToString());
+             }
         }
 
     }

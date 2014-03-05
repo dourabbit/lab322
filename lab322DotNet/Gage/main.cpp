@@ -19,8 +19,13 @@ void ProceedingData(void* pBuffer, uInt32 size, uInt32 u32SampleBits){
 	if (8 == u32SampleBits) return;
 
 	int16* pi16Buffer = (int16 *)pBuffer;
-	for (int i = 0; i < size; i++)
-		data[i] = pi16Buffer[i];
+	const uInt16 offset = 8;
+#pragma omp parallel for
+	for (int i = 0; i < size; i++){
+			data[ i] = pi16Buffer[i];
+
+
+		}
 
 };
 
@@ -86,7 +91,10 @@ int _tmain(int argc, _TCHAR* argv[])
 					break;
 			}
 		}
-		gage->Capture();
+		if (gage->bDone == GageState::Start)
+			gage->Capture();
+		else if (gage->bDone == GageState::Pause)
+			gage->Pause();
 	}
 	gage->Exit();
 	delete gage;

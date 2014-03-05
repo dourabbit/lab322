@@ -9,3 +9,6 @@ C:\Users\Lab322\Desktop\lab322DotNet\GageUI\bin\Release\GageWrapper.pdb
 C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Release\GageUI.csprojResolveAssemblyReference.cache
 C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Release\GageUI.exe
 C:\Users\Lab322\Desktop\lab322DotNet\GageUI\obj\Release\GageUI.pdb
+C:\Users\Lab322\Desktop\lab322DotNet\Dist\GageUI\Release\GageUI.exe.config
+C:\Users\Lab322\Desktop\lab322DotNet\Dist\GageUI\Release\GageUI.exe
+C:\Users\Lab322\Desktop\lab322DotNet\Dist\GageUI\Release\GageUI.pdb
